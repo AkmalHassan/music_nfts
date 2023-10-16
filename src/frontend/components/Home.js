@@ -17,6 +17,7 @@ const Home = ({ contract }) => {
       const uri = await contract.tokenURI(i.tokenId)
       // use uri to fetch the nft metadata stored on ipfs 
       const response = await fetch(uri + ".json")
+      console.log(response)
       const metadata = await response.json()
       const identicon = `data:image/png;base64,${new Identicon(metadata.name + metadata.price, 330).toString()}`
       // define item object
@@ -27,6 +28,7 @@ const Home = ({ contract }) => {
         audio: metadata.audio,
         identicon
       }
+      console.log(item)
       return item
     }))
     setMarketItems(marketItems)
@@ -79,7 +81,7 @@ const Home = ({ contract }) => {
 
       {marketItems.length > 0 ?
         <div className="row">
-          <main role="main" className="col-lg-12 mx-auto" style={{ maxWidth: '500px' }}>
+          <main role="main" className="col-lg-12 mx-auto" style={{ maxWidth: '350px' }}>
             <div className="content mx-auto">
               <audio src={marketItems[currentItemIndex].audio} ref={audioRef}></audio>
               <Card>

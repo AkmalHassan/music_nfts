@@ -5,8 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract MusicNFTMarketplace is ERC721("DAppFi", "DAPP"), Ownable {
-    string public baseURI =
-        "https://bafybeidhjjbjonyqcahuzlpt7sznmh4xrlbspa3gstop5o47l6gsiaffee.ipfs.nftstorage.link/";
+    string public baseURI = "https://bafybeidhjjbjonyqcahuzlpt7sznmh4xrlbspa3gstop5o47l6gsiaffee.ipfs.nftstorage.link/";
     string public baseExtension = ".json";
     address public artist;
     uint256 public royaltyFee;
@@ -67,7 +66,7 @@ contract MusicNFTMarketplace is ERC721("DAppFi", "DAPP"), Ownable {
         _transfer(address(this), msg.sender, _tokenId);
         payable(artist).transfer(royaltyFee);
         payable(seller).transfer(msg.value);
-        emit MarketItemBought(_tokenId, seller, msg.sender, price);
+        emit MarketItemBought(_tokenId, seller, msg.sender, msg.value);
     }
 
     /* Allows someone to resell their music nft */
